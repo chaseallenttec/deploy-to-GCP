@@ -33,7 +33,7 @@ jobs:
 
       - name: Deploy binary to GCP VM
         run: |
-          rsync -avz -e "ssh -i gcp_key -o StrictHostKeyChecking=no" ./addi-server ${{ secrets.GCP_DEV_VM_USER }}@${{ secrets.GCP_DEV_VM_IP }}:/home/user/addi-server
+          rsync -avz -e "ssh -i gcp_key -o StrictHostKeyChecking=no" ./addi-server ${{ secrets.GCP_DEV_VM_USER }}@${{ secrets.GCP_DEV_VM_IP }}:/home/${{ secrets.GCP_DEV_VM_USER }}/addi-server
 
       - name: Restart ADDI service on VM
         run: |
