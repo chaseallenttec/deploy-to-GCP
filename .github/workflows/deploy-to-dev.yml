@@ -20,7 +20,7 @@ jobs:
 
       - name: Set up SSH key
         run: |
-          echo "${{ secrets.GCP_DEV_SSH_PRIVATE_KEY }}" > gcp_key
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > gcp_key
           chmod 600 gcp_key
 
       - name: Install Go
