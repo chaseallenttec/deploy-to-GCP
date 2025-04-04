@@ -31,18 +31,9 @@ jobs:
       - name: Build Go project
         run: GOOS=linux GOARCH=amd64 go build -o addi-server
 
-      - name: Print VM user
-        run: |
-          echo "Deploying to user: ${{ secrets.GCP_DEV_VM_USER }}"
-
-      - name: Print VM IP
-        run: |
-          echo "Deploying to VM IP: ${{ secrets.GCP_DEV_VM_IP }}"
-
       - name: Deploy binary to GCP VM
         run: |
-          sudo ufw allow 22/tcp
-          rsync -avz -e "ssh -i gcp_key -o StrictHostKeyChecking=no" ./addi-server ${{ secrets.GCP_DEV_VM_USER }}@${{ secrets.GCP_DEV_VM_IP }}:/home/${{ secrets.GCP_DEV_VM_USER }}/addi-server
+          rsync -avz -e "ssh -i gcp_key -o StrictHostKeyChecking=no" ./addi-server ${{ secrets.GCP_DEV_VM_USER }}@${{ secrets.GCP_DEV_VM_IP }}:/home/user/addi-server
 
       - name: Restart ADDI service on VM
         run: |
